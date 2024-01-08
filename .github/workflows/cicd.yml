@@ -27,5 +27,5 @@ jobs:
       - name: Delete old container
         run: docker rm -f hostContainer
       - name: Run docker container
-        run: docker run -d -p 3002:82 --name hostContainer rqbabdl/micro-frontend-host
+        run: docker run -d -p 3002:80 --name hostContainer rqbabdl/micro-frontend-host
       

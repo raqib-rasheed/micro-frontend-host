@@ -12,7 +12,7 @@ module.exports = () => {
         entry: './src/index.ts',
         mode: isProduction,
         devServer: {
-            port: 3000,
+            port: 3002,
         },
         module: {
             rules: [
