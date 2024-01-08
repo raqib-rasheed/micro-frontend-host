@@ -1,7 +1,14 @@
-FROM node:alpine 
-ENV NODE_ENV development
-WORKDIR /host
-COPY ./package.json /host
+FROM node:14.19.1-alpine as build
+WORKDIR /app
+COPY package.json .
 RUN npm install
 COPY . .
-CMD ["npm","start"]
+RUN npm run build
+
+FROM nginx
+WORKDIR /usr/share/nginx/host/html
+RUN rm -rf *
+COPY --from=build /app/dist .
+EXPOSE 82
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+
